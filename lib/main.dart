@@ -16,8 +16,6 @@ class MyApp extends StatelessWidget {
       title: "JAMES25",
       theme: ThemeData(
         useMaterial3: true,
-        colorScheme: ColorScheme.fromSwatch(
-          primarySwatch: Colors.deepPurple,)
       ),
       home: const HomeWidget(),
     );
@@ -32,7 +30,6 @@ class HomeWidget extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('JAMES25'),
-        backgroundColor: const Color.fromARGB(30, 250, 0, 250),
       ),
       body: const Column(children: [
         Text("KakaoPay"),
