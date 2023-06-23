@@ -1,42 +1,63 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'pay.dart';
+
+import 'shopping_cart_page.dart';
+import 'payment_method.dart';
+import 'payment.dart';
 
 void main() async {
   await dotenv.load(fileName: '.env');
-  runApp(const MyApp());
+  runApp(const MaterialApp(
+      home: HomePage(),
+    ),
+  );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  const HomePage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'JAMES25',
-      theme: ThemeData(
+      title: 'Flutter Demo',
+      theme: ThemeData.light(
         useMaterial3: true,
       ),
-      home: const HomeWidget(),
+      home: DefaultTabController(
+        length: 3,
+        child: Scaffold(
+          appBar: AppBar(
+            toolbarHeight: 0,
+            bottom: const TabBar(
+              tabs: [
+                Tab(icon: Icon(Icons.shopping_cart), text: '장바구니',),
+                Tab(icon: Icon(Icons.help_outline), text: '결제 방식 결정',),
+                Tab(icon: Icon(Icons.credit_card), text: '결제',),
+              ],
+            ),
+          ),
+          body: const TabBarView(
+            children: [
+              ShoppingCartPage(),
+              PaymentMethodPage(),
+              PaymentPage(),
+            ],
+          )
+        )
+      )
     );
   }
 }
 
-class HomeWidget extends StatelessWidget {
-  const HomeWidget({super.key});
+class ChangeTab extends StatelessWidget {
+    const ChangeTab({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('JAMES25'),
-      ),
-      body: const Column(children: [
-        Text('KakaoPay'),
-        KakaoPayQRCodeWidget(won: 6000),
-        Text('Toss'),
-        TossQRCodeWidget(won: 6000),
-      ]),
+    return ElevatedButton(onPressed: () {
+      DefaultTabController.of(context).animateTo(1);
+    },
+    child: const Text('버튼이 작동하지 않더라도 어? 금지'),
     );
   }
 }
