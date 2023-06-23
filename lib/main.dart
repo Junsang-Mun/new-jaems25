@@ -35,7 +35,10 @@ class HomeWidget extends StatelessWidget {
         backgroundColor: const Color.fromARGB(30, 250, 0, 250),
       ),
       body: const Column(children: [
-        KakaoPayQRCodeWidget(won: 255),
+        Text("KakaoPay"),
+        KakaoPayQRCodeWidget(won: 6000),
+        Text("Toss"),
+        TossQRCodeWidget(won: 6000),
       ]),
     );
   }
@@ -53,6 +56,20 @@ class KakaoPayQRCodeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return QrImageView(
       data: "kakaotalk://kakaopay/money/to/qr?qr_code=${dotenv.env['KAKAOPAY_UID']}${calcKakaoPay(won)}",
+      version: QrVersions.auto,
+      size: 200,
+    );
+  }
+}
+
+class TossQRCodeWidget extends StatelessWidget {
+  final int won;
+  const TossQRCodeWidget({Key? key, required this.won}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return QrImageView(
+      data: "supertoss://send?amount=$won&bank=${dotenv.env['TOSS_BANK']}&accountNo=${dotenv.env['TOSS_ACCNO']}&origin=qr",
       version: QrVersions.auto,
       size: 200,
     );
