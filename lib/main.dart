@@ -3,7 +3,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'pay.dart';
 
 void main() async {
-  await dotenv.load(fileName: ".env");
+  await dotenv.load(fileName: '.env');
   runApp(const MyApp());
 }
 
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: "JAMES25",
+      title: 'JAMES25',
       theme: ThemeData(
         useMaterial3: true,
       ),
@@ -32,9 +32,9 @@ class HomeWidget extends StatelessWidget {
         title: const Text('JAMES25'),
       ),
       body: const Column(children: [
-        Text("KakaoPay"),
+        Text('KakaoPay'),
         KakaoPayQRCodeWidget(won: 6000),
-        Text("Toss"),
+        Text('Toss'),
         TossQRCodeWidget(won: 6000),
       ]),
     );
