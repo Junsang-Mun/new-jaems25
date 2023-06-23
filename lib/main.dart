@@ -31,12 +31,10 @@ class HomeWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Stateless Widget'),
+        title: const Text('JAMES25'),
         backgroundColor: const Color.fromARGB(30, 250, 0, 250),
       ),
       body: const Column(children: [
-        QRCodeWidget(data: "https://naver.com"),
-        KakaoPayWidget(won: 255),
         KakaoPayQRCodeWidget(won: 255),
       ]),
     );
@@ -47,16 +45,6 @@ String calcKakaoPay(int won) {
   return (won << 19).toRadixString(16);
 }
 
-class KakaoPayWidget extends StatelessWidget {
-  final int won;
-  const KakaoPayWidget({Key? key, required this.won}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Text('Bills: ${calcKakaoPay(won)}\nKakaoPayUID: ${dotenv.env['KAKAOPAY_UID']}');
-  }
-}
-
 class KakaoPayQRCodeWidget extends StatelessWidget {
   final int won;
   const KakaoPayQRCodeWidget({Key? key, required this.won}) : super(key: key);
@@ -64,7 +52,6 @@ class KakaoPayQRCodeWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return QrImageView(
-      // data: "https://qr.kakaopay.com/${dotenv.env['KAKAOPAY_UID']}${calcKakaoPay(won)}",
       data: "kakaotalk://kakaopay/money/to/qr?qr_code=${dotenv.env['KAKAOPAY_UID']}${calcKakaoPay(won)}",
       version: QrVersions.auto,
       size: 200,
