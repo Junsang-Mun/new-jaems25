@@ -9,7 +9,7 @@ class Product {
     required this.count,
   });
 
-  Product.loading() : this(name:'...', price: 0, count: 0, startingIndex: 0);
+  Product.loading() : this(name:'...', price: 0, count: 0);
 
   bool get isLoading => name == '...';
 }

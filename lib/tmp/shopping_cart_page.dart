@@ -3,27 +3,17 @@ import 'package:flutter/material.dart';
 class Product {
   final String name;
   final int price;
+  final int count;
 
-  Product(this.name, this.price);
+  Product(this.name, this.price, this.count);
 }
 
-class Cart with ChangeNotifier {
-  List<Product> products = [];
+class ShoppingCartListWidget extends StatefulWidget {
+  const ShoppingCartListWidget({super.key});
 
-  List<Product> get items => [];
-
-  int get total {
-    return products.fold(0, (total, current) => total + current.price);
-  }
-
-  void addToCart (Product product) => products.add(product);
-
-  void removeFromCard (Product product) => {
-    products.remove(product);
-    notifyListeners();
-  }
+  @override
+  State<
 }
-
 
 // class ListData {
 //   final String product;
