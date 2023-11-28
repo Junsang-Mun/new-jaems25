@@ -36,6 +36,8 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   List<Product?> cartItems = [];
   num totalAmount = 0;
+  bool _errorToolTip = false;
+
   final textFieldController = TextEditingController();
   final textFieldFocusNode = FocusNode();
 
@@ -49,8 +51,10 @@ class _CartScreenState extends State<CartScreen> {
     if (response.statusCode == 200) {
       // var encodedString = jsonEncode(response.body);
       Map<String, dynamic> data = jsonDecode(response.body);
+      _errorToolTip = false;
       return Product.fromJson(data);
     } else {
+      _errorToolTip = true;
       throw Exception('Failed to load product details');
     }
   }
@@ -102,6 +106,7 @@ class _CartScreenState extends State<CartScreen> {
               },
             ),
           ),
+          Visibility(visible:_errorToolTip, child: const Text('Error: No such item')),
           Text(
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
               '총 금액: ${totalAmount.toInt()}원'

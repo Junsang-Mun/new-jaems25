@@ -16,7 +16,11 @@ class CheckoutScreen extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('결제금액: ₩${totalAmount.toInt()}'),
+              const SizedBox(height: 20),
+              Text(
+                  style: const TextStyle(
+                      fontSize: 20, fontWeight: FontWeight.bold),
+                  '결제금액: ₩${totalAmount.toInt()}'),
               const SizedBox(height: 20),
               // TossQRCodeWidget(won: totalAmount.toInt()),
               KakaoPayQRCodeWidget(won: totalAmount.toInt()),
