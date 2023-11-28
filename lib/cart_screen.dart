@@ -1,5 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
 import 'checkout_screen.dart'; // Import the checkout screen file
+
+class Product {
+  final String barcode;
+  final String name;
+  final double price;
+
+  Product(this.barcode, this.name, this.price);
+
+  factory Product.fromJson(String body) {
+    print(body);
+    return Product('1234567890', '킹갓참깨라면', 1200);
+  }
+}
 
 class CartScreen extends StatefulWidget {
   @override
@@ -9,6 +23,16 @@ class CartScreen extends StatefulWidget {
 class _CartScreenState extends State<CartScreen> {
   List<String> cartItems = [];
   double totalAmount = 0.0;
+
+  Future<Product?> fetchProductDetails(String barcode) async {
+    final response = await http.get(Uri.parse(
+        'https://us-central1-jaemjeon-qr.cloudfunctions.net/product/$barcode'));
+    if (response.statusCode == 200) {
+      return Product.fromJson(response.body);
+    } else {
+      throw Exception('Failed to load product details');
+    }
+  }
 
   void addToCart(String productBarcode) {
     // Logic to fetch product details from the database using barcode and update cart
