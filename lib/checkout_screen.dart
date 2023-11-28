@@ -3,7 +3,7 @@ import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 class CheckoutScreen extends StatelessWidget {
-  final double totalAmount;
+  final num totalAmount;
 
   CheckoutScreen(this.totalAmount);
 
