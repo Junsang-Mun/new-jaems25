@@ -18,7 +18,8 @@ class CheckoutScreen extends StatelessWidget {
             children: [
               Text('결제금액: ₩${totalAmount.toInt()}'),
               const SizedBox(height: 20),
-              TossQRCodeWidget(won: totalAmount.toInt()),
+              // TossQRCodeWidget(won: totalAmount.toInt()),
+              KakaoPayQRCodeWidget(won: totalAmount.toInt()),
               const SizedBox(height: 20),
               const Text(':happy_jaemjeon:'),
             ],

@@ -39,12 +39,25 @@ class _CartScreenState extends State<CartScreen> {
             },
             child: const Text('킹갓참깨라면 추가하기'),
           ),
+          Visibility(
+            visible: true,
+            child: TextField(
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                labelText: '바코드 입력',
+              ),
+              onSubmitted: (value) {
+                addToCart(value);
+              },
+            ),
+          ),
           Text('총 금액 ${totalAmount.toInt()}원'),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CheckoutScreen(totalAmount)),
+                MaterialPageRoute(
+                    builder: (context) => CheckoutScreen(totalAmount)),
               );
             },
             child: const Text('결제하기'),
