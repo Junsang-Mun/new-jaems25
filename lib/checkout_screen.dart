@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'welcome_screen.dart';
 
 class CheckoutScreen extends StatelessWidget {
   final num totalAmount;
@@ -11,24 +12,49 @@ class CheckoutScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Checkout')),
-      body: SingleChildScrollView(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const SizedBox(height: 20),
-              Text(
-                  style: const TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold),
-                  '결제금액: ₩${totalAmount.toInt()}'),
-              const SizedBox(height: 20),
-              // TossQRCodeWidget(won: totalAmount.toInt()),
-              KakaoPayQRCodeWidget(won: totalAmount.toInt()),
-              const SizedBox(height: 20),
-              const Text(':happy_jaemjeon:'),
-            ],
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 20),
+                    Text(
+                      '후원금액: ₩${totalAmount.toInt()}',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    const SizedBox(height: 20),
+                    KakaoPayQRCodeWidget(won: totalAmount.toInt()),
+                    const SizedBox(height: 20),
+                    const Text(':happy_jaemjeon:'),
+                  ],
+                ),
+              ),
+            ),
           ),
-        ),
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => WelcomeScreen(),
+                  ),
+                );
+              },
+              style: ButtonStyle(
+                minimumSize: MaterialStateProperty.all(const Size(1000, 100)),
+              ),
+              child: const Text('후원 완료'),
+            ),
+          ),
+        ],
       ),
     );
   }

@@ -13,7 +13,7 @@ class KioskApp extends StatelessWidget {
     return MaterialApp(
       title: '잼스25 키오스크',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.yellow,
       ),
       initialRoute: '/',
       routes: {

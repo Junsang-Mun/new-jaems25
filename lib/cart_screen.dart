@@ -106,11 +106,13 @@ class _CartScreenState extends State<CartScreen> {
               },
             ),
           ),
-          Visibility(visible:_errorToolTip, child: const Text('Error: No such item')),
+          Visibility(
+            visible: _errorToolTip,
+            child: const Text('Error: No such item'),
+          ),
           Text(
               style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-              '총 금액: ${totalAmount.toInt()}원'
-            ),
+              '총 금액: ${totalAmount.toInt()}원'),
           ElevatedButton(
             onPressed: () {
               Navigator.push(
@@ -122,7 +124,7 @@ class _CartScreenState extends State<CartScreen> {
             style: ButtonStyle(
               minimumSize: MaterialStateProperty.all(const Size(1000, 100)),
             ),
-            child: const Text('결제하기'),
+            child: const Text('후원하기'),
           ),
         ],
       ),
